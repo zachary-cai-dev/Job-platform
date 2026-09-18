@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": 5012345,
+      "title": "Senior Backend Engineer",
+      "updated_at": "2026-09-10T14:32:00-05:00",
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/5012345",
+      "location": { "name": "Remote - Germany, France, Netherlands" },
+      "content": "<p>We are looking for a Senior Backend Engineer to join our platform team.</p>",
+      "offices": [{ "name": "Remote EU" }]
+    },
+    {
+      "id": 5012346,
+      "title": "Staff Data Engineer",
+      "updated_at": "2026-09-12T09:00:00-05:00",
+      "absolute_url": "https://boards.greenhouse.io/acme/jobs/5012346",
+      "location": { "name": "US only" },
+      "content": "<p>Build our next-generation data platform.</p>",
+      "offices": [{ "name": "San Francisco" }]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "0-legal-notice": "Remotive data is for personal use only. Credit Remotive and link back.",
+  "job-count": 2,
+  "total-job-count": 2,
+  "jobs": [
+    {
+      "id": 1680495,
+      "url": "https://remotive.com/remote-jobs/software-dev/senior-backend-engineer-1680495",
+      "title": "Senior Backend Engineer",
+      "company_name": "Acme Corp",
+      "company_logo": "https://remotive.com/job/1680495/logo",
+      "category": "Software Development",
+      "tags": ["python", "django", "postgresql"],
+      "job_type": "full_time",
+      "publication_date": "2026-09-11T20:16:48",
+      "candidate_required_location": "Europe",
+      "salary": "$70k - $100k",
+      "description": "<p>We are looking for a Senior Backend Engineer.</p>",
+      "company_logo_url": "https://remotive.com/job/1680495/logo"
+    },
+    {
+      "id": 1680500,
+      "url": "https://remotive.com/remote-jobs/marketing/growth-marketer-1680500",
+      "title": "Growth Marketer",
+      "company_name": "Beta Inc",
+      "company_logo": "https://remotive.com/job/1680500/logo",
+      "category": "Marketing",
+      "tags": ["seo", "content"],
+      "job_type": "contract",
+      "publication_date": "2026-09-10T09:00:00",
+      "candidate_required_location": "Worldwide",
+      "description": "<p>We need a growth marketer.</p>",
+      "company_logo_url": "https://remotive.com/job/1680500/logo"
+    }
+  ]
+}

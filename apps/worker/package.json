@@ -1,0 +1,28 @@
+{
+  "name": "@euro-jobs/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "run-once": "tsx src/runOnce.ts",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@euro-jobs/config": "workspace:*",
+    "@euro-jobs/db": "workspace:*",
+    "@euro-jobs/jobs": "workspace:*",
+    "@euro-jobs/shared": "workspace:*",
+    "@euro-jobs/sources": "workspace:*",
+    "bullmq": "^5.28.1",
+    "ioredis": "^5.4.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

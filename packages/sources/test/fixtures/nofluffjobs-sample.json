@@ -1,0 +1,29 @@
+{
+  "postings": [
+    {
+      "id": "mobile-software-engineer-2-android-technical-platform-grupa-allegro-poznan",
+      "name": "Grupa Allegro Sp. z o. o.",
+      "location": {
+        "places": [{ "country": { "code": "POL", "name": "Poland" }, "city": "Poznań" }],
+        "fullyRemote": false
+      },
+      "posted": 1787323239954,
+      "renewed": 1789396839954,
+      "title": "Mobile Software Engineer 2 (Android)",
+      "technology": "Android",
+      "category": "mobile",
+      "seniority": ["Mid"],
+      "url": "mobile-software-engineer-2-android-technical-platform-grupa-allegro-poznan",
+      "regions": ["pl"],
+      "fullyRemote": false,
+      "salary": { "from": 14600, "to": 20825, "type": "permanent", "currency": "PLN", "period": "Month" },
+      "tiles": {
+        "values": [
+          { "value": "mobile", "type": "category" },
+          { "value": "Android", "type": "requirement" },
+          { "value": "Kotlin", "type": "requirement" }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "offset": 0,
+  "limit": 100,
+  "totalFound": 2,
+  "content": [
+    {
+      "id": "744000137768409",
+      "name": "Staff Software Engineer - DSM",
+      "company": { "identifier": "Cint", "name": "Cint" },
+      "releasedDate": "2026-09-10T09:00:00.000Z",
+      "location": { "city": "Remote", "country": "gb", "remote": true, "fullLocation": "Remote, United Kingdom" }
+    },
+    {
+      "id": "744000137768410",
+      "name": "Account Executive, APAC",
+      "company": { "identifier": "Cint", "name": "Cint" },
+      "releasedDate": "2026-09-09T09:00:00.000Z",
+      "location": { "city": "Singapore", "country": "sg", "remote": false, "fullLocation": "Singapore" }
+    }
+  ]
+}

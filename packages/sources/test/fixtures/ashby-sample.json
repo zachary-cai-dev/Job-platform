@@ -1,0 +1,23 @@
+{
+  "jobs": [
+    {
+      "id": "c3d4e5f6-2222-3333-4444-555566667777",
+      "title": "Machine Learning Engineer",
+      "location": "Remote EU",
+      "publishedAt": "2026-09-11T08:00:00.000Z",
+      "jobUrl": "https://jobs.ashbyhq.com/acme/c3d4e5f6",
+      "applyUrl": "https://jobs.ashbyhq.com/acme/c3d4e5f6/application",
+      "descriptionHtml": "<p>Join our ML platform team.</p>",
+      "isRemote": true
+    },
+    {
+      "id": "d4e5f6a7-3333-4444-5555-666677778888",
+      "title": "Enterprise Account Executive",
+      "location": "APAC only",
+      "publishedAt": "2026-09-09T08:00:00.000Z",
+      "jobUrl": "https://jobs.ashbyhq.com/acme/d4e5f6a7",
+      "descriptionHtml": "<p>Grow our APAC enterprise book of business.</p>",
+      "isRemote": true
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  // Supabase's pooled (PgBouncer, port 6543) connection — used at runtime by
+  // apps/web and apps/worker. PgBouncer's transaction mode doesn't support the
+  // prepared statements Prisma Migrate needs, so migrations use `directUrl` below
+  // instead (Supabase's direct, non-pooled port 5432 connection).
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [pg_trgm]
+}
+
+// ---------------------------------------------------------------------------
+// Reference (extensible vocabulary) tables — see docs/data-model.md §3.
+// Adding a new role category, technology alias, or source is a data insert,
+// never a migration.
+// ---------------------------------------------------------------------------
+
+enum SourceKind {
+  ATS
+  JOB_BOARD
+  AGGREGATOR
+  CAREERS_PAGE
+}
+
+enum IntegrationMethod {
+  OFFICIAL_API
+  PUBLIC_API
+  RSS_FEED
+  ATS_ENDPOINT
+  STRUCTURED_FEED
+  PERMITTED_CRAWL
+}
+
+enum SourceStatus {
+  ENABLED
+  DISABLED
+  UNSUPPORTED
+}
+
+model Source {
+  slug              String            @id
+  displayName       String
+  kind              SourceKind
+  integrationMethod IntegrationMethod
+  status            SourceStatus      @default(DISABLED)
+  config            Json?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  rawJobs           RawJob[]
+  jobSourceListings JobSourceListing[]
+  ingestionRuns     IngestionRun[]
+
+  @@map("sources")
+}
+
+model RoleCategory {
+  slug        String   @id
+  label       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  jobs        Job[]
+
+  @@map("role_categories")
+}
+
+enum TechnologyCategory {
+  LANGUAGE
+  FRAMEWORK
+  CLOUD
+  DATABASE
+  AI_ML
+  TOOLING
+  OTHER
+}
+
+model Technology {
+  slug        String              @id
+  displayName String
+  aliases     String[]
+  category    TechnologyCategory
+  createdAt   DateTime            @default(now())
+
+  jobs        JobTechnology[]
+
+  @@map("technologies")
+}
+
+// ---------------------------------------------------------------------------
+// Fixed enums (docs/data-model.md §4)
+// ---------------------------------------------------------------------------
+
+enum Seniority {
+  INTERNSHIP
+  JUNIOR
+  MID
+  SENIOR
+  STAFF
+  PRINCIPAL
+  LEAD
+  MANAGER
+  DIRECTOR
+}
+
+enum EmploymentType {
+  PERMANENT
+  CONTRACT
+  FREELANCE
+  PART_TIME
+  INTERNSHIP
+}
+
+enum RemoteType {
+  FULLY_REMOTE
+  HYBRID
+  UNKNOWN
+}
+
+enum RegionCode {
+  EUROPE
+  EU
+  EEA
+  EMEA
+  WORLDWIDE
+}
+
+enum GeographyConfidence {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum SalaryPeriod {
+  HOURLY
+  DAILY
+  MONTHLY
+  YEARLY
+}
+
+enum ProcessingStatus {
+  PENDING
+  NORMALIZED
+  EUROPE_ELIGIBLE
+  REJECTED_GEOGRAPHY
+  /// Title didn't match any known tech role category (packages/normalization's
+  /// ROLE_CATEGORIES) — a company's ATS board lists every open req, not just
+  /// engineering ones (Sales, Legal, Support, Marketing, ...), and this product is
+  /// scoped to tech roles specifically (brief §1), not a generic job board.
+  REJECTED_ROLE_CATEGORY
+  MERGED_DUPLICATE
+  PUBLISHED
+  FAILED
+}
+
+enum IngestionRunStatus {
+  RUNNING
+  SUCCESS
+  FAILED
+  PARTIAL
+}
+
+// ---------------------------------------------------------------------------
+// Raw capture — append-only, immutable (docs/data-model.md §5)
+// ---------------------------------------------------------------------------
+
+model RawJob {
+  id                 String            @id @default(cuid())
+
+  sourceSlug         String
+  source             Source            @relation(fields: [sourceSlug], references: [slug])
+
+  externalId         String
+  sourceUrl          String
+  rawPayload         Json
+  rawLocation        String?
+  rawTitle           String?
+
+  checksum           String
+  fetchedAt          DateTime          @default(now())
+
+  processingStatus   ProcessingStatus  @default(PENDING)
+  processingError    String?
+
+  ingestionRunId     String?
+  ingestionRun       IngestionRun?     @relation(fields: [ingestionRunId], references: [id])
+
+  jobSourceListingId String?
+  jobSourceListing   JobSourceListing? @relation(fields: [jobSourceListingId], references: [id])
+
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@unique([sourceSlug, externalId, checksum])
+  @@index([sourceSlug, processingStatus])
+  @@index([fetchedAt])
+  @@map("raw_jobs")
+}
+
+// ---------------------------------------------------------------------------
+// Canonical job + provenance (docs/data-model.md §6-8)
+// ---------------------------------------------------------------------------
+
+model Company {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  logoUrl    String?
+  websiteUrl String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  jobs       Job[]
+
+  @@map("companies")
+}
+
+model Job {
+  id                  String              @id @default(cuid())
+
+  title               String
+  normalizedTitle     String
+  roleCategorySlug    String
+  roleCategory        RoleCategory        @relation(fields: [roleCategorySlug], references: [slug])
+  seniority           Seniority?
+  tags                String[]
+
+  companyId           String
+  company             Company             @relation(fields: [companyId], references: [id])
+
+  description         String
+  descriptionText     String
+
+  locationRaw         String?
+  locationDisplay     String
+  remoteType          RemoteType          @default(FULLY_REMOTE)
+
+  eligibleCountries   String[]
+  eligibleRegions     RegionCode[]
+  locationRestrictions String?
+
+  geographyConfidence GeographyConfidence
+  geographyReason     String
+
+  employmentType      EmploymentType?
+
+  salaryMin           Int?
+  salaryMax           Int?
+  salaryCurrency      String?
+  salaryPeriod        SalaryPeriod?
+
+  skills              String[]
+  technologies        JobTechnology[]
+
+  postedAt            DateTime?
+  postedAtIsInferred  Boolean             @default(false)
+  firstDiscoveredAt   DateTime            @default(now())
+  lastSeenAt          DateTime            @default(now())
+  expiresAt           DateTime?
+
+  applyUrl            String
+  /// hash(company + normalizedTitle + locationDisplay) — a cheap candidate-narrowing
+  /// signal for dedup, NOT the authoritative identity (packages/deduplication's
+  /// scoring engine is). Deliberately not @unique: two genuinely different, currently
+  /// open reqs can legitimately share company+title+location (e.g. two identical
+  /// simultaneous "Software Engineer, Remote EU" openings), and a same-fingerprint
+  /// job must still be allowed to exist as its own row if the scoring engine decides
+  /// it isn't actually a match.
+  fingerprint         String
+
+  isActive            Boolean             @default(true)
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+
+  sourceListings      JobSourceListing[]
+
+  /// Derived tsvector over title/normalizedTitle/description/skills, maintained by
+  /// a BEFORE INSERT/UPDATE trigger added in a raw-SQL migration (to_tsvector is
+  /// STABLE, not IMMUTABLE, so it can't back a `GENERATED ALWAYS AS` column) — see
+  /// docs/architecture.md §7.
+  searchVector        Unsupported("tsvector")?
+
+  @@index([isActive, postedAt])
+  @@index([fingerprint])
+  @@index([roleCategorySlug])
+  @@index([seniority])
+  @@index([salaryMin, salaryMax])
+  @@index([geographyConfidence])
+  @@index([eligibleRegions], type: Gin)
+  @@index([eligibleCountries], type: Gin)
+  @@index([searchVector], type: Gin)
+  @@map("jobs")
+}
+
+model JobTechnology {
+  jobId          String
+  job            Job        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  technologySlug String
+  technology     Technology @relation(fields: [technologySlug], references: [slug])
+
+  @@id([jobId, technologySlug])
+  @@map("job_technologies")
+}
+
+model JobSourceListing {
+  id                 String    @id @default(cuid())
+
+  jobId              String
+  job                Job       @relation(fields: [jobId], references: [id])
+
+  sourceSlug         String
+  source             Source    @relation(fields: [sourceSlug], references: [slug])
+
+  externalId         String
+  sourceUrl          String
+  applyUrl           String
+
+  postedAt           DateTime?
+  postedAtIsInferred Boolean   @default(false)
+  firstDiscoveredAt  DateTime  @default(now())
+  lastSeenAt         DateTime  @default(now())
+  isActive           Boolean   @default(true)
+
+  rawJobs            RawJob[]
+
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@unique([sourceSlug, externalId])
+  @@index([jobId])
+  @@index([lastSeenAt])
+  @@map("job_source_listings")
+}
+
+// ---------------------------------------------------------------------------
+// Admin auth — staff accounts for the /admin panel. New signups start PENDING
+// and can't log in until an existing approved admin approves them; the very
+// first account ever created is auto-approved (bootstrap), see
+// apps/web/src/lib/auth/signup.ts.
+// ---------------------------------------------------------------------------
+
+enum AdminUserStatus {
+  PENDING
+  APPROVED
+  DISABLED
+}
+
+/// USER: view-only access to the ingestion overview. ADMIN: also approves/
+/// disables/reinstates USER accounts. SUPER_ADMIN: also adds accounts directly
+/// (skipping the pending-approval queue) and grants/revokes the ADMIN role.
+enum AdminUserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+model AdminUser {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  passwordHash  String
+  name          String?
+  status        AdminUserStatus @default(PENDING)
+  role          AdminUserRole   @default(USER)
+
+  approvedAt    DateTime?
+  approvedById  String?
+  approvedBy    AdminUser?      @relation("AdminUserApprovals", fields: [approvedById], references: [id])
+  approvals     AdminUser[]     @relation("AdminUserApprovals")
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  sessions      AdminSession[]
+
+  @@map("admin_users")
+}
+
+model AdminSession {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@map("admin_sessions")
+}
+
+// ---------------------------------------------------------------------------
+// Admin / observability (docs/data-model.md §9)
+// ---------------------------------------------------------------------------
+
+model IngestionRun {
+  id                     String             @id @default(cuid())
+
+  sourceSlug             String
+  source                 Source             @relation(fields: [sourceSlug], references: [slug])
+
+  startedAt              DateTime           @default(now())
+  finishedAt             DateTime?
+  status                 IngestionRunStatus @default(RUNNING)
+
+  fetchedCount           Int                @default(0)
+  europeEligibleCount    Int                @default(0)
+  rejectedGeographyCount Int                @default(0)
+  rejectedRoleCategoryCount Int             @default(0)
+  createdCount           Int                @default(0)
+  updatedCount           Int                @default(0)
+  duplicateCount         Int                @default(0)
+  errorCount             Int                @default(0)
+  errorSample            Json?
+  durationMs             Int?
+
+  rawJobs                RawJob[]
+
+  @@index([sourceSlug, startedAt])
+  @@map("ingestion_runs")
+}

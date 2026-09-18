@@ -1,0 +1,26 @@
+/** LinkedIn-specific DOM knowledge lives here so markup changes have one repair point. */
+export const LINKEDIN_SELECTORS = {
+  searchCard: [
+    "li .job-search-card",
+    ".jobs-search__results-list > li",
+    "[data-entity-urn*='jobPosting']",
+  ],
+  cardLink: ["a.base-card__full-link", "a[href*='/jobs/view/']"],
+  cardTitle: [".base-search-card__title", "h3"],
+  cardCompany: [".base-search-card__subtitle", "h4"],
+  cardCompanyLink: [".base-search-card__subtitle a", "h4 a"],
+  cardLocation: [".job-search-card__location"],
+  cardPostedAt: ["time[datetime]", ".job-search-card__listdate", ".job-search-card__listdate--new"],
+  cardWorkplaceType: [".job-search-card__workplace-type", "[data-tracking-control-name*='workplace']"],
+  detailTitle: ["h1.top-card-layout__title", "h1"],
+  detailCompany: ["a.topcard__org-name-link", ".topcard__flavor-row .topcard__flavor:first-child"],
+  detailCompanyLink: ["a.topcard__org-name-link"],
+  detailLocation: ["span.topcard__flavor--bullet", ".top-card-layout__second-subline span:first-child"],
+  detailDescription: [".show-more-less-html__markup", ".description__text"],
+  detailPostedAt: ["time[datetime]", ".posted-time-ago__text"],
+  detailSalary: [".compensation__salary", ".salary", "[class*='salary']"],
+  detailCriteriaItem: ["li.description__job-criteria-item"],
+  detailCriteriaLabel: [".description__job-criteria-subheader"],
+  detailCriteriaValue: [".description__job-criteria-text"],
+  canonicalLink: ["link[rel='canonical']"],
+} as const;

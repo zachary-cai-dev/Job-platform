@@ -1,0 +1,21 @@
+name: euro-jobs
+
+# Postgres is Supabase-hosted (see packages/db/.env.example) — this compose file only
+# runs what still needs to be local: Redis for BullMQ.
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - euro_jobs_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  euro_jobs_redis_data:

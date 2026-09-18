@@ -1,0 +1,17 @@
+{
+  "id": "744000137768409",
+  "name": "Staff Software Engineer - DSM",
+  "location": { "city": "Remote", "country": "gb", "remote": true, "fullLocation": "Remote, United Kingdom" },
+  "releasedDate": "2026-09-10T09:00:00.000Z",
+  "postingUrl": "https://jobs.smartrecruiters.com/Cint/744000137768409-staff-software-engineer-dsm",
+  "applyUrl": "https://jobs.smartrecruiters.com/Cint/744000137768409-staff-software-engineer-dsm?oga=true",
+  "jobAd": {
+    "sections": {
+      "companyDescription": { "title": "Company Description", "text": "<p>Cint is a global tech company.</p>" },
+      "jobDescription": {
+        "title": "Job Description",
+        "text": "<p>Join our Data Solutions & Measurement team working with Kubernetes, PostgreSQL and Go.</p>"
+      }
+    }
+  }
+}

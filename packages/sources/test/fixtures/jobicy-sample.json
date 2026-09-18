@@ -1,0 +1,24 @@
+{
+  "apiVersion": "2.2.16",
+  "documentationUrl": "https://jobi.cy/apidocs",
+  "friendlyNotice": "Thanks for using Jobicy API! Please credit Jobicy with a direct link to the source.",
+  "jobCount": 1,
+  "lastUpdate": "2026-09-15T06:03:02+00:00",
+  "jobs": [
+    {
+      "id": 153312,
+      "url": "https://jobicy.com/jobs/153312-engineering-manager-eu",
+      "jobSlug": "153312-engineering-manager-eu",
+      "jobTitle": "Engineering Manager - EU",
+      "companyName": "Toptal",
+      "companyLogo": "https://jobicy.com/data/logo.png",
+      "jobIndustry": ["Dev"],
+      "jobType": ["Full-Time"],
+      "jobGeo": "Europe",
+      "jobLevel": "Manager",
+      "jobExcerpt": "Lead a team of engineers.",
+      "jobDescription": "<p>We are hiring an Engineering Manager for our EU team.</p>",
+      "pubDate": "2026-09-15T06:00:00+00:00"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "updatedAt": 1789488897,
+  "offset": 0,
+  "limit": 2,
+  "totalCount": 103877,
+  "nextCursor": "cursor-page-2",
+  "jobs": [
+    {
+      "title": "Senior Python Engineer",
+      "excerpt": "Build our core platform.",
+      "companyName": "Huckleberry Labs",
+      "companySlug": "huckleberry-labs",
+      "companyLogo": "https://cdn-images.himalayas.app/logo1.png",
+      "employmentType": "Full Time",
+      "minSalary": 80000,
+      "maxSalary": 120000,
+      "salaryPeriod": "annual",
+      "seniority": ["Senior"],
+      "currency": "USD",
+      "locationRestrictions": ["Germany", "France"],
+      "timezoneRestrictions": [1, 2],
+      "categories": ["Software-Engineer"],
+      "parentCategories": ["Developer"],
+      "description": "<p>Join our engineering team.</p>",
+      "pubDate": 1789494292,
+      "expiryDate": 1799494292,
+      "applicationLink": "https://huckleberry-labs.example/apply/123",
+      "guid": "https://himalayas.app/companies/huckleberry-labs/jobs/senior-python-engineer-2970969860"
+    },
+    {
+      "title": "HR Business Partner",
+      "companyName": "Ritchie Bros.",
+      "employmentType": "Full Time",
+      "minSalary": null,
+      "maxSalary": null,
+      "seniority": ["Mid"],
+      "locationRestrictions": [],
+      "categories": ["HR"],
+      "parentCategories": ["Human Resources"],
+      "description": "<p>Support our HR operations.</p>",
+      "pubDate": 1789488033,
+      "guid": "https://himalayas.app/companies/ritchie-bros/jobs/hr-business-partner-6404567757"
+    }
+  ]
+}

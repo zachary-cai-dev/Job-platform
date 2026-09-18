@@ -1,0 +1,19 @@
+[
+  {
+    "id": "a1b2c3d4-0000-1111-2222-333344445555",
+    "text": "Senior Full Stack Engineer",
+    "hostedUrl": "https://jobs.lever.co/acme/a1b2c3d4",
+    "applyUrl": "https://jobs.lever.co/acme/a1b2c3d4/apply",
+    "createdAt": 1757500800000,
+    "categories": { "location": "Remote - UK and Ireland", "team": "Platform", "commitment": "Full-time" },
+    "descriptionPlain": "We are looking for a Senior Full Stack Engineer to join our Platform team."
+  },
+  {
+    "id": "b2c3d4e5-1111-2222-3333-444455556666",
+    "text": "Sales Development Representative",
+    "hostedUrl": "https://jobs.lever.co/acme/b2c3d4e5",
+    "createdAt": 1757400000000,
+    "categories": { "location": "Remote - United States", "team": "Sales", "commitment": "Full-time" },
+    "descriptionPlain": "Drive new business growth across North America."
+  }
+]

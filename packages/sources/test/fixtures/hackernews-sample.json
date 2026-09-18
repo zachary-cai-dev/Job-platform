@@ -1,0 +1,57 @@
+{
+  "user": { "submitted": [49522897, 49522896, 49156683] },
+  "items": {
+    "49522897": {
+      "id": 49522897,
+      "type": "story",
+      "by": "whoishiring",
+      "time": 1788358877,
+      "title": "Ask HN: Who is hiring? (September 2026)",
+      "kids": [49711313, 49523712, 49999001, 49999002, 49537891]
+    },
+    "49522896": {
+      "id": 49522896,
+      "type": "story",
+      "by": "whoishiring",
+      "time": 1788358877,
+      "title": "Ask HN: Who wants to be hired? (September 2026)",
+      "kids": [1, 2]
+    },
+    "49711313": {
+      "id": 49711313,
+      "type": "comment",
+      "by": "ManalMay",
+      "time": 1789000000,
+      "text": "Pango (YC S26) | Founding Software Engineer | On-site (hybrid) in Stockholm, Sweden | Full time<p>Pango is building an agentic platform.<p>Apply at pango.example/careers"
+    },
+    "49523712": {
+      "id": 49523712,
+      "type": "comment",
+      "by": "fh973",
+      "time": 1789000100,
+      "text": "QUOBYTE | Berlin, Germany | Full-time | ONSITE (Germany) | <a href=\"https://www.quobyte.com/\">https://www.quobyte.com/</a><p>At Quobyte we build storage systems."
+    },
+    "49999001": {
+      "id": 49999001,
+      "type": "comment",
+      "by": "deleted_user",
+      "time": 1789000200,
+      "deleted": true
+    },
+    "49999002": {
+      "id": 49999002,
+      "type": "comment",
+      "by": "spammer",
+      "time": 1789000300,
+      "dead": true,
+      "text": "spam content"
+    },
+    "49537891": {
+      "id": 49537891,
+      "type": "comment",
+      "by": "checkly-hn",
+      "time": 1789000400,
+      "text": "<a href=\"https:&#x2F;&#x2F;www.checklyhq.com\" rel=\"nofollow\">https:&#x2F;&#x2F;www.checklyhq.com</a> | Product Manager, Sales Engineer, Senior Sales Engineer | REMOTE (Europe &#x2F; US Eastern) | Full-time<p>Checkly builds monitoring-as-code."
+    }
+  }
+}

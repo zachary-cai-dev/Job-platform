@@ -1,0 +1,30 @@
+{
+  "jobs": [
+    {
+      "id": "65f1a2b3c4d5e6f7a8b9c0d1",
+      "title": "Senior Frontend Developer",
+      "company": "Acme Inc.",
+      "url": "https://jobgether.com/offer/senior-frontend-developer-acme-inc",
+      "location": "Spain, France",
+      "remote": "Full Remote",
+      "contractType": "Full time",
+      "experience": "Senior (5-10 years)",
+      "salaryRange": "60000-80000 EUR",
+      "jobFunctions": ["Frontend Developer"],
+      "postedAt": "2026-09-16T15:31:29.957Z"
+    },
+    {
+      "id": "6aaab651a819b4e027cb79c9",
+      "title": "Social Media Manager",
+      "company": "Agent",
+      "url": "https://jobgether.com/offer/social-media-manager-agent",
+      "location": "Philippines",
+      "remote": "Full Remote",
+      "contractType": "Full time",
+      "experience": "",
+      "jobFunctions": ["Social Media Manager"],
+      "postedAt": "2026-09-16T15:31:35.246Z"
+    }
+  ],
+  "pagination": { "page": 1, "limit": 25, "hasMore": false }
+}

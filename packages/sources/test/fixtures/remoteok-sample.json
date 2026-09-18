@@ -1,0 +1,27 @@
+[
+  { "legal": "Use of this API is subject to the RemoteOK API terms." },
+  {
+    "id": "1043215",
+    "slug": "senior-devops-engineer-acme",
+    "company": "Acme",
+    "position": "Senior DevOps Engineer",
+    "tags": ["devops", "aws", "kubernetes", "terraform"],
+    "location": "Europe",
+    "date": "2026-09-13T10:00:00+00:00",
+    "url": "https://remoteok.com/remote-jobs/1043215-senior-devops-engineer-acme",
+    "description": "Own our CI/CD and cloud infrastructure.",
+    "salary_min": 80000,
+    "salary_max": 110000
+  },
+  {
+    "id": "1043216",
+    "slug": "growth-marketer-globex",
+    "company": "Globex",
+    "position": "Growth Marketer",
+    "tags": ["marketing"],
+    "location": "Worldwide",
+    "date": "2026-09-12T10:00:00+00:00",
+    "url": "https://remoteok.com/remote-jobs/1043216-growth-marketer-globex",
+    "description": "Drive user acquisition worldwide."
+  }
+]

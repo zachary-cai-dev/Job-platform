@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.workingnomads.com/job/go/1864402/",
+    "title": "Senior Backend Engineer",
+    "description": "<p>We are hiring a senior backend engineer.</p>",
+    "company_name": "Acme Remote",
+    "category_name": "Development",
+    "tags": "python,django,postgresql",
+    "location": "Europe",
+    "pub_date": "2026-09-15T10:10:56-04:00"
+  },
+  {
+    "url": "https://www.workingnomads.com/job/go/1864500/",
+    "title": "Content Reviewer",
+    "description": "<p>Review online content.</p>",
+    "company_name": "TELUS Digital",
+    "category_name": "Administration",
+    "tags": "english,quality",
+    "location": "USA only",
+    "pub_date": "2026-09-14T08:00:00-04:00"
+  }
+]

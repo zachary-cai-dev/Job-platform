@@ -1,0 +1,23 @@
+[
+  {
+    "id": 19066,
+    "currency_code": "EUR",
+    "expires_at": "2027-03-02",
+    "main_requirements": "<ul><li>6-8 years of Java experience.</li></ul>",
+    "nice_to_have": "<ul><li>Experience with Kafka.</li></ul>",
+    "perks": "<ul><li>22 days vacation.</li></ul>",
+    "relocation_paid": false,
+    "role_description": "<div>Our client is a global retail chain.</div>",
+    "title": "Senior Java Software Developer",
+    "created_at": "2026-08-01T00:00:00Z",
+    "updated_at": "2026-09-01T00:00:00Z",
+    "published_at": "2026-08-02T00:00:00Z",
+    "type": "Full-time",
+    "remote": false,
+    "gross_salary_low": 45000,
+    "gross_salary_high": 65000,
+    "tags": ["Spring Boot", "Java", "SQL"],
+    "url": "https://landing.jobs/at/inscale/senior-java-software-developer-in-lisbon-2025",
+    "locations": [{ "city": "Lisbon", "country_code": "PT" }]
+  }
+]
