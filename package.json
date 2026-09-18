@@ -7,6 +7,7 @@
   },
   "packageManager": "pnpm@12.4.1",
   "scripts": {
+    "postinstall": "pnpm --filter @euro-jobs/db generate",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "start": "turbo run start",
